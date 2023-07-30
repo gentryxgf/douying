@@ -1,6 +1,6 @@
 module douying
 
-go 1.19
+go 1.20
 
 require github.com/spf13/viper v1.16.0
 
@@ -47,6 +47,6 @@ require (
 	golang.org/x/text v0.9.0 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	gorm.io/driver/mysql v1.5.1 // indirect
-	gorm.io/gorm v1.25.2 // indirect
+	gorm.io/driver/mysql v1.5.1
+	gorm.io/gorm v1.25.2
 )
