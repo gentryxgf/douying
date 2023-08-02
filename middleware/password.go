@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"douying/utils"
+	"mini-tiktok/common/encrypt"
 
 	"github.com/gin-gonic/gin"
 )
@@ -21,7 +21,7 @@ func MD5Middleware() gin.HandlerFunc {
 		if password == "" || len(password) < MinPasswordLength || len(password) > MaxPasswordLength {
 			c.PostForm("password")
 		} else {
-			c.Set("password", utils.Md5Encoder(password))
+			c.Set("password", encrypt.Md5([]byte(password)))
 		}
 
 		c.Next()

@@ -33,11 +33,6 @@ func NewUserDaoInstance() *UserDao {
 	return userDao
 }
 
-// 初始化用户登录表
-func (*UserDao) TokenMap() {
-	UserLoginInfo = make(map[string]User, 50)
-}
-
 // 通过用户ID查询用户
 func (*UserDao) QueryUserById(id uint) (*User, error) {
 	var user User
