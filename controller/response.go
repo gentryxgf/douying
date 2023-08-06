@@ -1,6 +1,6 @@
 package controller
 
-import "douying/service"
+import "mini-tiktok/service"
 
 // 返回前端的公共数据
 type Response struct {

@@ -1,9 +1,9 @@
 package service
 
 import (
-	"douying/middleware"
-	"douying/model"
 	"errors"
+	"mini-tiktok/common/jwt"
+	"mini-tiktok/model"
 )
 
 const (
@@ -71,7 +71,7 @@ func (q *LoginRegisterFlow) checkParams() error {
 }
 
 // 登录流程
-func (q *LoginRegisterFlow) loginFlow() error {
+/* func (q *LoginRegisterFlow) loginFlow() error {
 	//判断是否在登录用户缓存表内
 	if userCache, ok := model.UserLoginInfo[q.username]; ok {
 		// 判断缓存内的密码与登录密码是否相同
@@ -79,7 +79,7 @@ func (q *LoginRegisterFlow) loginFlow() error {
 			return errors.New("密码不正确")
 		} else {
 			// 用户在缓存内且密码正确，重新颁发token返回
-			token, _ := middleware.GenerateToken(userCache.ID)
+			token, _ := jwt.GenToken()
 			q.userid = userCache.ID
 			q.token = token
 			return nil
@@ -91,13 +91,13 @@ func (q *LoginRegisterFlow) loginFlow() error {
 			return errors.New("该用户不存在")
 		}
 		// 用户在数据库内，则颁发token并返回，同时将用户加入登录用户缓存表
-		token, _ := middleware.GenerateToken(user.ID)
+		token, _ := jwt.GenToken(user.ID)
 		q.userid = (*user).ID
 		q.token = token
 		model.UserLoginInfo[q.username] = *user
 		return nil
 	}
-}
+} */
 
 // 注册流程
 func (q *LoginRegisterFlow) registerFlow() error {
@@ -112,11 +112,10 @@ func (q *LoginRegisterFlow) registerFlow() error {
 	if err != nil {
 		return errors.New("用户添加失败")
 	}
-	// 颁发token以及将用户加入登录缓存表
-	token, _ := middleware.GenerateToken((*user).ID)
+	// 颁发token
+	token, _ := jwt.GenToken((*user).ID)
 	q.userid = (*user).ID
 	q.token = token
-	model.UserLoginInfo[q.username] = *user
 	return nil
 }
 

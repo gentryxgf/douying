@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"douying/service"
+	"mini-tiktok/service"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

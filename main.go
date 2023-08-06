@@ -1,9 +1,9 @@
 package main
 
 import (
-	"douying/controller"
-	"douying/middleware"
-	"douying/model"
+	"mini-tiktok/controller"
+	"mini-tiktok/middleware"
+	"mini-tiktok/model"
 
 	"github.com/gin-gonic/gin"
 )

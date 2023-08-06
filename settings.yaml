@@ -1,0 +1,29 @@
+zap:
+  format: "console"
+  mode: "dev"
+  warn_filename: "./mini-tiktok-warn.log"
+  info_filename: "./mini-tiktok-info.log"
+  max_size: 10
+  max_age: 30
+  max_backups: 5
+  local_time: 1
+redis:
+  host: "127.0.0.1"
+  port: 6379
+  password: "xxx"
+  pool_size: 100
+  db: 0
+mysql:
+  host: "127.0.0.1"
+  port: 3306
+  config: "charset=utf8mb4&parseTime=True&loc=Local"
+  user: "root"
+  password: "xxx"
+  db: "mini-tiktok"
+  log_level: "debug"
+  max_idle_conns: 10
+  max_open_conns: 100
+jwt:
+  secret: "mini-tiktok"
+  expires: 168
+  issuer: "root"
