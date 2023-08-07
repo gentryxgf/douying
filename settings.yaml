@@ -1,3 +1,7 @@
+system:
+  host: "127.0.0.1"
+  port: 8080
+  env: "release"
 zap:
   format: "console"
   mode: "dev"
