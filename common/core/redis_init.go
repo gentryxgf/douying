@@ -2,10 +2,10 @@ package core
 
 import (
 	"context"
+	"douyin/common/config"
+	"douyin/common/global"
 	"github.com/go-redis/redis"
 	"go.uber.org/zap"
-	"mini-tiktok/common/config"
-	"mini-tiktok/common/global"
 	"time"
 )
 

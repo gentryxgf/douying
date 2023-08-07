@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"mini-tiktok/common/encrypt"
+	"douyin/common/encrypt"
 
 	"github.com/gin-gonic/gin"
 )

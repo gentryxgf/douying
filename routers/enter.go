@@ -1,8 +1,8 @@
 package routers
 
 import (
+	"douyin/common/global"
 	"github.com/gin-gonic/gin"
-	"mini-tiktok/common/global"
 )
 
 type RouterGroup struct {

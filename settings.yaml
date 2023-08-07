@@ -23,11 +23,11 @@ mysql:
   config: "charset=utf8mb4&parseTime=True&loc=Local"
   user: "root"
   password: "xxx"
-  db: "mini-tiktok"
+  db: "douyin"
   log_level: "debug"
   max_idle_conns: 10
   max_open_conns: 100
 jwt:
-  secret: "mini-tiktok"
+  secret: "douyin"
   expires: 168
   issuer: "root"

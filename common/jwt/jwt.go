@@ -1,10 +1,10 @@
 package jwt
 
 import (
+	"douyin/common/global"
 	"errors"
 	"github.com/dgrijalva/jwt-go/v4"
 	"go.uber.org/zap"
-	"mini-tiktok/common/global"
 	"time"
 )
 

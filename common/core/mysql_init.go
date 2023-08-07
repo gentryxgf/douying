@@ -1,12 +1,12 @@
 package core
 
 import (
+	"douyin/common/config"
+	"douyin/common/global"
 	"go.uber.org/zap"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"mini-tiktok/common/config"
-	"mini-tiktok/common/global"
 	"time"
 )
 

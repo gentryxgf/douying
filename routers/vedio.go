@@ -1,6 +1,6 @@
 package routers
 
-import "mini-tiktok/controller"
+import "douyin/controller"
 
 func (router RouterGroup) VedioRouter() {
 	app := controller.ControllerGroupApp.VedioController
