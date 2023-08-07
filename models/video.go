@@ -1,6 +1,6 @@
 package models
 
-type VedioModel struct {
+type VideoModel struct {
 	MODEL
 	PlayUrl      string `json:"play_url" gorm:"column:play_url"`
 	CoverUrl     string `json:"cover_url" gorm:"column:cover_url"`
