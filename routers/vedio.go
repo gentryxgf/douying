@@ -4,5 +4,5 @@ import "douyin/controller"
 
 func (router RouterGroup) VedioRouter() {
 	app := controller.ControllerGroupApp.VedioController
-	router.POST("/vedio/upload", app.UploadVedioView)
+	router.POST("/vedio/upload", app.UploadVideoView)
 }
