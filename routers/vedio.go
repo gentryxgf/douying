@@ -1,4 +1,4 @@
-package router
+package routers
 
 import "mini-tiktok/controller"
 

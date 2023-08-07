@@ -4,7 +4,7 @@ import (
 	"go.uber.org/zap"
 	"mini-tiktok/common/core"
 	"mini-tiktok/common/global"
-	"mini-tiktok/router"
+	"mini-tiktok/routers"
 )
 
 func main() {
@@ -18,7 +18,7 @@ func main() {
 	core.InitRedis(global.Config.RedisConf)
 
 	// 初始化路由
-	r := router.InitRouter()
+	r := routers.InitRouter()
 	addr := global.Config.SystemConf.Addr()
 	err := r.Run(addr)
 	if err != nil {
