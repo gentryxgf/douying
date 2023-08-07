@@ -1,8 +1,8 @@
 zap:
   format: "console"
   mode: "dev"
-  warn_filename: "./mini-tiktok-warn.log"
-  info_filename: "./mini-tiktok-info.log"
+  warn_filename: "./douyin-warn.log"
+  info_filename: "./douyin-info.log"
   max_size: 10
   max_age: 30
   max_backups: 5

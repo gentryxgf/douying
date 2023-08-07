@@ -1,78 +1,15 @@
 package model
 
-import (
-	"log"
-	"sync"
-
-	"gorm.io/gorm"
-)
-
-// 登录用户缓存表，key为用户名，value为用户信息
-var UserLoginInfo map[string]User
-
-type User struct {
-	gorm.Model
-	Name     string `gorm:"column:username"`
-	Password string `gorm:"column:password"`
-}
-
-func (User) TableName() string {
-	return "user"
-}
-
-type UserDao struct {
-}
-
-var userDao *UserDao
-var userOnce sync.Once
-
-func NewUserDaoInstance() *UserDao {
-	userOnce.Do(func() {
-		userDao = &UserDao{}
-	})
-	return userDao
-}
-
-// 通过用户ID查询用户
-func (*UserDao) QueryUserById(id uint) (*User, error) {
-	var user User
-	err := db.Where("id = ?", id).First(&user).Error
-	if err != nil {
-		log.Println("Find user by id failed: ", err.Error())
-		return nil, err
-	}
-	return &user, nil
-}
-
-// 通过用户名查询用户
-func (*UserDao) QueryUserByName(name string) (*User, error) {
-	var user User
-	err := db.Where("username = ?", name).First(&user).Error
-	if err != nil {
-		log.Println("Find user by name failed: ", err.Error())
-		return nil, err
-	}
-	return &user, nil
-}
-
-// 通过用户名和密码查询用户
-func (*UserDao) QueryUserByNameAndPassword(name, password string) (*User, error) {
-	var user User
-	err := db.Where("username = ? AND password = ?", name, password).First(&user).Error
-	if err != nil {
-		log.Println("Find user by name and password failed: ", err.Error())
-		return nil, err
-	}
-	return &user, nil
-}
-
-// 添加用户
-func (*UserDao) AddUser(name, password string) (*User, error) {
-	user := User{Name: name, Password: password}
-	err := db.Create(&user).Error
-	if err != nil {
-		log.Println("Add user failed: ", err.Error())
-		return nil, err
-	}
-	return &user, nil
+type UserModel struct {
+	MODEL
+	Username            string `json:"username" gorm:"column:username"`
+	Password            string `json:"password" gorm:"column:password"`
+	Avator              string `json:"avator" gorm:"column:avator"`
+	BackgroundImage     string `json:"background_image" gorm:"column:background_image"`
+	Signature           string `json:"signature" gorm:"column:signature;type:text"`
+	FollowCount         int64  `json:"follow_count" gorm:"column:follow_count"`                   // 关注数量
+	FollowerCount       int64  `json:"follower_count" gorm:"column:follower_count"`               // 粉丝数量
+	TotalFavoritedCount int64  `json:"total_favorited_count" gorm:"column:total_favorited_count"` // 获赞数量
+	FavoriteCount       int64  `json:"favorite_count" gorm:"column:favorite_count"`               // 点赞数量
+	WorkCount           int64  `json:"work_count" gorm:"column:work_count"`                       // 作品数量
 }

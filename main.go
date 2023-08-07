@@ -1,20 +1,17 @@
 package main
 
 import (
-	"mini-tiktok/controller"
-	"mini-tiktok/middleware"
-	"mini-tiktok/model"
-
-	"github.com/gin-gonic/gin"
+	"mini-tiktok/common/core"
+	"mini-tiktok/common/global"
 )
 
 func main() {
-	err := model.InitMysql()
-	if err != nil {
-		panic("DB wrong")
-	}
-	r := gin.Default()
-	r.POST("/user/login", middleware.MD5Middleware(), controller.UserLoginHandler)
-	r.POST("/user/register", middleware.MD5Middleware(), controller.UserRegisterHandler)
-	r.Run(":8080")
+	// 初始化配置文件
+	core.InitConf()
+	// 初始化日志库
+	core.InitZap(global.Config.ZapConf)
+	// 初始化mysql
+	core.InitMysql(global.Config.MysqlConf)
+	// 初始化redis
+	core.InitRedis(global.Config.RedisConf)
 }
