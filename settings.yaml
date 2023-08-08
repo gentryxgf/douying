@@ -1,7 +1,7 @@
 system:
   host: "127.0.0.1"
   port: 8080
-  env: "release"
+  env: "debug"
 zap:
   format: "console"
   mode: "dev"
@@ -22,8 +22,8 @@ mysql:
   port: 3306
   config: "charset=utf8mb4&parseTime=True&loc=Local"
   user: "root"
-  password: "xxx"
-  db: "douyin"
+  password: "123456"
+  db_name: "douyin"
   log_level: "debug"
   max_idle_conns: 10
   max_open_conns: 100
