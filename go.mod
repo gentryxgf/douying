@@ -1,4 +1,4 @@
-module mini-tiktok
+module douyin
 
 go 1.20
 

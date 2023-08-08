@@ -1,10 +1,10 @@
 package global
 
 import (
+	"douyin/common/config"
 	"github.com/go-redis/redis"
 	"go.uber.org/zap"
 	"gorm.io/gorm"
-	"mini-tiktok/common/config"
 )
 
 var (

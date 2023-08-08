@@ -1,8 +1,8 @@
 package core
 
 import (
-	"mini-tiktok/common/config"
-	"mini-tiktok/common/global"
+	"douyin/common/config"
+	"douyin/common/global"
 	"os"
 
 	"go.uber.org/zap"

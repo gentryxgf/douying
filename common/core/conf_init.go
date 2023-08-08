@@ -1,11 +1,11 @@
 package core
 
 import (
+	"douyin/common/config"
+	"douyin/common/global"
 	"fmt"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
-	"mini-tiktok/common/config"
-	"mini-tiktok/common/global"
 )
 
 const filename = "./settings.yaml"

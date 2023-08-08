@@ -1,8 +1,12 @@
+system:
+  host: "127.0.0.1"
+  port: 8080
+  env: "debug"
 zap:
   format: "console"
   mode: "dev"
-  warn_filename: "./mini-tiktok-warn.log"
-  info_filename: "./mini-tiktok-info.log"
+  warn_filename: "./douyin-warn.log"
+  info_filename: "./douyin-info.log"
   max_size: 10
   max_age: 30
   max_backups: 5
@@ -18,12 +22,12 @@ mysql:
   port: 3306
   config: "charset=utf8mb4&parseTime=True&loc=Local"
   user: "root"
-  password: "xxx"
-  db: "mini-tiktok"
+  password: "123456"
+  db_name: "douyin"
   log_level: "debug"
   max_idle_conns: 10
   max_open_conns: 100
 jwt:
-  secret: "mini-tiktok"
+  secret: "douyin"
   expires: 168
   issuer: "root"
