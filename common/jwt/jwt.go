@@ -3,16 +3,17 @@ package jwt
 import (
 	"douyin/common/global"
 	"errors"
+	"time"
+
 	"github.com/dgrijalva/jwt-go/v4"
 	"go.uber.org/zap"
-	"time"
 )
 
 var MySecret []byte
 
 type PayLoad struct {
 	Username string `json:"username"`
-	UserID   int    `json:"userID"`
+	UserID   int64  `json:"userID"`
 }
 
 type UserClaim struct {

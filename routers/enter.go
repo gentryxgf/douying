@@ -2,6 +2,7 @@ package routers
 
 import (
 	"douyin/common/global"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,6 +18,7 @@ func InitRouter() *gin.Engine {
 	routerGroupApp := RouterGroup{routerGroup}
 
 	routerGroupApp.VedioRouter()
+	routerGroupApp.UserRegisterRouter()
 
 	return router
 }

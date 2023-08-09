@@ -1,7 +1,9 @@
 package service
 
 type ServiceGroup struct {
-	VideoService VideoService
+	VideoService         VideoService
+	UserRegisterService  UserRegisterService
+	UserVideoListService UserVideoListService
 }
 
 var ServiceGroupApp = new(ServiceGroup)
