@@ -12,7 +12,7 @@ zap:
   max_backups: 5
   local_time: 1
 redis:
-  host: "8.134.154.235"
+  host: "127.0.0.1"
   port: 6379
   password: "gaj991130"
   pool_size: 100

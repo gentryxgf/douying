@@ -18,8 +18,9 @@ func main() {
 	// 初始化redis
 	core.InitRedis(global.Config.RedisConf)
 
+	var err error
 	// 初始化mysql数据库表结构
-	/*err := core.InitMysqlTable()
+	/*err = core.InitMysqlTable()
 	if err != nil {
 		return
 	}*/
@@ -28,7 +29,7 @@ func main() {
 	r := routers.InitRouter()
 	addr := global.Config.SystemConf.Addr()
 	fmt.Println(fmt.Sprintf("douyin 正在运行在： %s", addr))
-	err := r.Run(addr)
+	err = r.Run(addr)
 	if err != nil {
 		global.Log.Fatal("路由失败", zap.Error(err))
 	}
