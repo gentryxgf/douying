@@ -1,5 +1,7 @@
 package dao
 
-type DaoGroup struct{}
+type DaoGroup struct {
+	VideoDao VideoDao
+}
 
 var DaoGroupApp = new(DaoGroup)

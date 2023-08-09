@@ -13,3 +13,7 @@ type UserModel struct {
 	FavoriteCount       int64  `json:"favorite_count" gorm:"column:favorite_count"`               // 点赞数量
 	WorkCount           int64  `json:"work_count" gorm:"column:work_count"`                       // 作品数量
 }
+
+func (UserModel) TableName() string {
+	return "user"
+}

@@ -11,3 +11,7 @@ type MessageModel struct {
 	IsRead         bool   `json:"is_read" gorm:"column:is_read;default:false"`
 	Content        string `json:"content" gorm:"column:content"`
 }
+
+func (MessageModel) TableName() string {
+	return "message"
+}

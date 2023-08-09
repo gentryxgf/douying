@@ -1,8 +1,10 @@
 package routers
 
-import "douyin/controller"
+import (
+	"douyin/controller"
+)
 
-func (router RouterGroup) VedioRouter() {
+func (router RouterGroup) VideoRouter() {
 	app := controller.ControllerGroupApp.VedioController
-	router.POST("/vedio/upload", app.UploadVideoView)
+	router.POST("/videos", app.UploadVideoView)
 }
