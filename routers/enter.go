@@ -17,7 +17,7 @@ func InitRouter() *gin.Engine {
 	router := gin.Default()
 	router.Use(middleware.GinLogger(), middleware.GinRecovery(true))
 
-	router.POST("/videos", controller.ControllerGroupApp.VedioController.UploadVideoView)
+	router.POST("/videos", controller.ControllerGroupApp.VideoController.UploadVideoView)
 
 	routerGroup := router.Group("douyin")
 	routerGroupApp := RouterGroup{routerGroup}

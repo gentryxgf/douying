@@ -9,22 +9,23 @@ import (
 	"net/http"
 )
 
-type VedioController struct{}
+type VideoController struct{}
 
-func (VedioController) UploadVideoView(c *gin.Context) {
+func (VideoController) UploadVideoView(c *gin.Context) {
 	// 获取token和title
-	var cr request.UploadVedioRequest
+	var cr request.UploadVideoRequest
 	if err := c.ShouldBind(&cr); err != nil {
-		global.Log.Error("UploadVideoView 参数错误", zap.Error(err))
+		global.Log.Error("VideoController.UploadVideoView 参数错误", zap.Error(err))
 		c.JSON(http.StatusOK, response.UploadVideoResponse{Response: response.Response{
 			StatusCode: global.ERROR,
 			StatusMsg:  "参数错误",
 		}})
 		return
 	}
+
 	video, err := c.FormFile("data")
 	if err != nil {
-		global.Log.Error("UploadVedioView 获取视频出错", zap.Error(err))
+		global.Log.Error("VideoController.UploadVideoView 获取视频出错", zap.Error(err))
 		c.JSON(http.StatusOK, response.UploadVideoResponse{Response: response.Response{
 			StatusCode: global.ERROR,
 			StatusMsg:  "获取视频文件失败",
@@ -37,7 +38,7 @@ func (VedioController) UploadVideoView(c *gin.Context) {
 	// 视频上传业务处理
 	err = VideoSer.UploadVideo(video, cr.Title, userID, c)
 	if err != nil {
-		global.Log.Error("UploadVedioView USE VideoSer.UploadVideo ERROR", zap.Error(err))
+		global.Log.Error("VideoController.UploadVideoView USE VideoSer.UploadVideo ERROR", zap.Error(err))
 		c.JSON(http.StatusOK, response.UploadVideoResponse{Response: response.Response{
 			StatusCode: global.ERROR,
 			StatusMsg:  "上传视频失败",
@@ -49,5 +50,4 @@ func (VedioController) UploadVideoView(c *gin.Context) {
 		StatusCode: global.SUCCESS,
 		StatusMsg:  "上传视频成功",
 	}})
-	return
 }

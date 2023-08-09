@@ -5,6 +5,6 @@ import (
 )
 
 func (router RouterGroup) VideoRouter() {
-	app := controller.ControllerGroupApp.VedioController
+	app := controller.ControllerGroupApp.VideoController
 	router.POST("/videos", app.UploadVideoView)
 }

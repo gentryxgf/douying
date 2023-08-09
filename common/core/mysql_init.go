@@ -3,7 +3,6 @@ package core
 import (
 	"douyin/common/config"
 	"douyin/common/global"
-	"fmt"
 	"go.uber.org/zap"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -17,7 +16,6 @@ func InitMysql(cfg config.MysqlConf) {
 		return
 	}
 	dsn := cfg.Dsn()
-	fmt.Println(dsn)
 	// 自定义gorm Logger
 	var mysqlLogger logger.Interface
 	if cfg.LogLevel == "debug" {
