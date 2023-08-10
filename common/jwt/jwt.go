@@ -12,7 +12,7 @@ var MySecret []byte
 
 type PayLoad struct {
 	Username string `json:"username"`
-	UserID   int    `json:"userID"`
+	UserID   int64  `json:"userID"`
 }
 
 type UserClaim struct {

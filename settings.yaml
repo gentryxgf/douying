@@ -12,9 +12,9 @@ zap:
   max_backups: 5
   local_time: 1
 redis:
-  host: "127.0.0.1"
+  host: "8.134.154.235"
   port: 6379
-  password: "xxxxx"
+  password: "gaj991130"
   pool_size: 100
   db: 6
 mysql:
@@ -22,9 +22,9 @@ mysql:
   port: 3306
   config: "charset=utf8mb4&parseTime=True&loc=Local"
   user: "root"
-  password: "xxxxx"
+  password: "gaj991130"
   db_name: "douyin"
-  log_level: "debug"
+  log_level: "error"
   max_idle_conns: 10
   max_open_conns: 100
 jwt:

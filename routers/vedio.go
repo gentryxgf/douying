@@ -6,5 +6,6 @@ import (
 
 func (router RouterGroup) VideoRouter() {
 	app := controller.ControllerGroupApp.VideoController
-	router.POST("/videos", app.UploadVideoView)
+	router.POST("/publish/action", app.UploadVideoView)
+	router.GET("/feed", app.VideoFeedView)
 }

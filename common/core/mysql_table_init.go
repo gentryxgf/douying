@@ -16,6 +16,7 @@ func InitMysqlTable() (err error) {
 			&models.FriendModel{},
 			&models.MessageModel{},
 			&models.UserModel{},
+			&models.LikeModel{},
 		)
 	if err != nil {
 		global.Log.Error("Mysql生成数据库表结构失败", zap.Error(err))
