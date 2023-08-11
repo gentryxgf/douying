@@ -3,6 +3,7 @@ package service
 import (
 	"douyin/common/global"
 	"douyin/common/utils"
+	"douyin/models/response"
 	"errors"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
@@ -25,6 +26,9 @@ var (
 		"wmv",
 	}
 )
+
+// 创建map，存储userID-user对象。方便储存视频作者信息，如果该视频作者之前出现过，就不用专门再去查询一遍
+var authorMap = make(map[int64]response.Author, 30)
 
 func (VideoService) UploadVideo(video *multipart.FileHeader, title string, userID int64, c *gin.Context) (err error) {
 
@@ -91,4 +95,70 @@ func (VideoService) UploadVideo(video *multipart.FileHeader, title string, userI
 	}
 
 	return nil
+}
+
+func (VideoService) VideoFeed(latestTime string, userID int64) (nextTime int64, list []response.VideoDetail, err error) {
+	// 根据latestTime获取视频列表
+	videoList, err := VideoDao.GetVideoList(latestTime)
+	if err != nil {
+		global.Log.Error("VideoService.VideoFeed USE VideoDao.GetVideoList ERROR", zap.Error(err))
+		return 0, nil, err
+	}
+	list = make([]response.VideoDetail, 0, len(videoList))
+	nextTime = videoList[len(videoList)-1].CreatedAt.Unix()
+
+	// 遍历视频列表中的每个对象，获取用户对象
+	for i := 0; i < len(videoList); i++ {
+		video := videoList[i]
+		authorID := video.UserID
+		// 判断authorMap中是否存储author信息
+		var author response.Author
+		var ok, isFollow, isLike bool
+		if author, ok = authorMap[authorID]; !ok {
+			// 去数据库查询author信息并存储到map中
+			user, err := UserDao.GetUserInfo(authorID)
+			if err != nil {
+				global.Log.Error("VideoService.VideoFeed USE UserDao.IsFollowAuthor ERROR", zap.Error(err))
+				continue
+			}
+			author = response.Author{
+				ID:              user.ID,
+				Name:            user.Username,
+				FollowCount:     user.FollowerCount,
+				FollowerCount:   user.FollowerCount,
+				Avatar:          user.Avatar,
+				BackgroundImage: user.BackgroundImage,
+				Signature:       user.Signature,
+				TotalFavorited:  user.TotalFavoritedCount,
+				WorkCount:       user.WorkCount,
+				FavouriteCount:  user.FavoriteCount,
+			}
+			isFollow, err = UserDao.IsFollowUser(userID, authorID)
+			if err != nil {
+				//global.Log.Error("VideoService.VideoFeed USE UserDao.IsFollowAuthor ERROR", zap.Error(err))
+				author.IsFollow = false
+			} else {
+				author.IsFollow = isFollow
+			}
+			authorMap[authorID] = author
+		}
+		like, err := VideoDao.IsLikeVideo(userID, video.ID)
+		if err != nil {
+			//global.Log.Error("VideoService.VideoFeed USE VideoDao.IsLikeVideo ERROR", zap.Error(err))
+			isLike = false
+		} else {
+			isLike = like
+		}
+		list = append(list, response.VideoDetail{
+			ID:             video.ID,
+			Author:         author,
+			PlayUrl:        video.PlayUrl,
+			CoverUrl:       video.CoverUrl,
+			FavouriteCount: video.LikeCount,
+			IsFavourite:    isLike,
+			Title:          video.Title,
+		})
+	}
+
+	return
 }
