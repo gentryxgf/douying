@@ -1,10 +1,13 @@
 package service
 
 import (
+	"douyin/common/global"
 	"douyin/common/jwt"
 	"douyin/models"
 	"douyin/models/response"
 	"errors"
+
+	"go.uber.org/zap"
 )
 
 type UserVideoListService struct{}
@@ -37,6 +40,7 @@ func userVideoList(userid int64, claim *jwt.UserClaim) ([]response.VideoData, er
 	// 先对userid验证是否为注册用户
 	user, err := UserRegisterDao.FindUserById(userid)
 	if err != nil {
+		global.Log.Error("UserVideoListService.UserVideoList USE UserRegisterDao.FindUserById ERROR", zap.Error(err))
 		return nil, errors.New("查询用户失败")
 	}
 	if user.ID == 0 {
@@ -46,6 +50,7 @@ func userVideoList(userid int64, claim *jwt.UserClaim) ([]response.VideoData, er
 	// 查询userid发布过的视频列表
 	videoList, err = UserVideoListDao.FindVideoListById(userid)
 	if err != nil {
+		global.Log.Error("UserVideoListService.UserVideoList USE UserVideoListDao.FindVideoListById ERROR", zap.Error(err))
 		return nil, errors.New("查询用户视频失败")
 	}
 	if len(videoList) == 0 {

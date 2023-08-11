@@ -26,7 +26,7 @@ func (UserRegisterDao) AddNewUser(name, password string) (*models.UserModel, err
 		Password: encrypt.GetPwd(password)}
 	err := global.DB.Create(&user).Error
 	if err != nil {
-		global.Log.Error("添加用户失败", zap.Error(err))
+		global.Log.Error("UserRegisterDao.AddNewUser ERROR 添加用户失败", zap.Error(err))
 		return nil, err
 	}
 	return &user, nil
@@ -37,7 +37,7 @@ func (UserRegisterDao) FindUserByNameAndPass(name, password string) (*models.Use
 	var user models.UserModel
 	err := global.DB.Where("username = ? and password = ?", name, encrypt.GetPwd(password)).First(&user).Error
 	if err != nil {
-		global.Log.Error("登录查询用户失败", zap.String("name", name), zap.Error(err))
+		global.Log.Error("UserRegisterDao.FindUserByNameAndPass ERROR 登录查询用户失败", zap.String("name", name), zap.Error(err))
 		return nil, err
 	}
 	return &user, nil
@@ -48,7 +48,7 @@ func (UserRegisterDao) FindUserById(id int64) (*models.UserModel, error) {
 	var user models.UserModel
 	err := global.DB.Where("id = ?", id).First(&user).Error
 	if err != nil {
-		global.Log.Error("ID查询用户失败", zap.Int64("user_id", id), zap.Error(err))
+		global.Log.Error("UserRegisterDao.FindUserById ERROR ID查询用户失败", zap.Int64("user_id", id), zap.Error(err))
 		return nil, err
 	}
 	return &user, nil

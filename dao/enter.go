@@ -5,6 +5,7 @@ type DaoGroup struct {
 	UserVideoListDao UserVideoListDao
 	VideoDao         VideoDao
 	UserDao          UserDao
+	MessageDao       MessageDao
 }
 
 var DaoGroupApp = new(DaoGroup)

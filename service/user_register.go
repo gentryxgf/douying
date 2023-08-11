@@ -1,9 +1,12 @@
 package service
 
 import (
+	"douyin/common/global"
 	"douyin/common/jwt"
 	"douyin/models/response"
 	"errors"
+
+	"go.uber.org/zap"
 )
 
 const (
@@ -91,11 +94,13 @@ func (q *LoginRegisterFlow) checkParams() error {
 func (q *LoginRegisterFlow) loginFlow() error {
 	user, err := UserRegisterDao.FindUserByNameAndPass(q.username, q.password)
 	if err != nil {
+		global.Log.Error("UserRegisterService.LoginFlow USE UserRegisterDao.FindUserByNameAndPass ERROR ", zap.Error(err))
 		return errors.New("用户名或密码错误")
 	}
 	// 颁发token
 	token, err := jwt.GenToken(jwt.PayLoad{Username: (*user).Username, UserID: (*user).ID})
 	if err != nil {
+		global.Log.Error("UserRegisterService.LoginFlow USE jwt.GenToken ERROR ", zap.Error(err))
 		return errors.New("Token生成失败")
 	}
 
@@ -112,11 +117,13 @@ func (q *LoginRegisterFlow) registerFlow() error {
 	// 对用户名和密码进行数据库查询验证
 	user, err := UserRegisterDao.AddNewUser(q.username, q.password)
 	if err != nil {
+		global.Log.Error("UserRegisterService.LoginFlow USE UserRegisterDao.AddNewUser ERROR ", zap.Error(err))
 		return errors.New("添加用户失败")
 	}
 	// 颁发token
 	token, err := jwt.GenToken(jwt.PayLoad{Username: (*user).Username, UserID: (*user).ID})
 	if err != nil {
+		global.Log.Error("UserRegisterService.RegisterFlow USE jwt.GenToken ERROR ", zap.Error(err))
 		return errors.New("Token生成失败")
 	}
 

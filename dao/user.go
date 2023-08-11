@@ -11,8 +11,10 @@ type UserDao struct{}
 
 func (UserDao) GetUserInfo(userID int64) (user models.UserModel, err error) {
 	err = global.DB.Where("id = ?", userID).Take(&user).Error
-	if err != nil {
+	if err != nil && err != gorm.ErrRecordNotFound {
 		global.Log.Error("UserDao.GetUserInfo USE global.DB.Take, MODEL: UserModel ERROR", zap.Error(err))
+	} else if err == gorm.ErrRecordNotFound {
+		global.Log.Error("查找用户不存在", zap.Int64("userID", userID))
 	}
 	return
 }
