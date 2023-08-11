@@ -23,7 +23,7 @@ func (UserRegisterDao) IsUserExistByUsername(username string) bool {
 // 添加用户
 func (UserRegisterDao) AddNewUser(name, password string) (*models.UserModel, error) {
 	var user = models.UserModel{
-		MODEL:    models.MODEL{CreateAt: time.Now(), UpdateAt: time.Now()},
+		MODEL:    models.MODEL{CreatedAt: time.Now(), UpdatedAt: time.Now()},
 		Username: name,
 		Password: password}
 	err := global.DB.Create(&user).Error

@@ -1,8 +1,9 @@
 package controller
 
 type ControllerGroup struct {
-	VedioController      VedioController
-	UserRegiterContoller UserRegiterContoller
+	VideoController         VideoController
+	UserRegiterContoller    UserRegiterContoller
+	UserVedioListController UserVedioListController
 }
 
 var ControllerGroupApp = new(ControllerGroup)

@@ -19,3 +19,23 @@ func (UserVideoListDao) FindVideoListById(id int64) ([]*models.VideoModel, error
 	}
 	return videoList, nil
 }
+
+// 通过follow表查询是否是粉丝
+func (UserVideoListDao) IsFollowByIds(from, to int64) bool {
+	var res models.FollowModel
+	global.DB.Model(&models.FollowModel{}).Where("from_user_id = ? and to_user_id = ?", from, to).First(&res)
+	if res.ID == 0 {
+		return false
+	}
+	return true
+}
+
+// 通过喜欢表查询是否点赞
+func (UserVideoListDao) IsFavoriteByIds(userid, videoid int64) bool {
+	var res models.FavoriteModel
+	global.DB.Model(&models.FavoriteModel{}).Where("user_id = ? and video_id = ?", userid, videoid).First(&res)
+	if res.ID == 0 {
+		return false
+	}
+	return true
+}

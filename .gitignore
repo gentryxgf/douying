@@ -1,5 +1,5 @@
-settings.yaml
+upload/
 douyin-warn.log
 douyin-info.log
-test/db_user_test.go
+settings.yaml
 main.go

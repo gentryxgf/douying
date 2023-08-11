@@ -1,5 +1,5 @@
 package response
 
-type UploadVedioResponse struct {
+type UploadVideoResponse struct {
 	Response
 }

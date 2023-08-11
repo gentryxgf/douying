@@ -6,4 +6,5 @@ type Config struct {
 	RedisConf  RedisConf  `mapstructure:"redis"`
 	MysqlConf  MysqlConf  `mapstructure:"mysql"`
 	JwtConf    JwtConf    `mapstructure:"jwt"`
+	UploadConf UploadConf `mapstructure:"upload"`
 }

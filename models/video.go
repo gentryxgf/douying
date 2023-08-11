@@ -11,3 +11,7 @@ type VideoModel struct {
 	LookCount    int64  `json:"look_count" gorm:"column:look_count"`
 	CommentCount int64  `json:"comment_count" gorm:"column:comment_count"`
 }
+
+func (VideoModel) TableName() string {
+	return "video"
+}

@@ -16,12 +16,20 @@ func main() {
 	// 初始化mysql
 	core.InitMysql(global.Config.MysqlConf)
 	// 初始化redis
-	core.InitRedis(global.Config.RedisConf)
+	//core.InitRedis(global.Config.RedisConf)
+
+	var err error
+	// 初始化mysql数据库表结构
+	/* err = core.InitMysqlTable()
+	if err != nil {
+		return
+	} */
 
 	// 初始化路由
 	r := routers.InitRouter()
 	addr := global.Config.SystemConf.Addr()
-	err := r.Run(addr)
+	//fmt.Println(fmt.Sprintf("douyin 正在运行在： %s", addr))
+	err = r.Run(addr)
 	if err != nil {
 		global.Log.Fatal("路由失败", zap.Error(err))
 	}

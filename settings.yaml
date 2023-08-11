@@ -1,6 +1,6 @@
 system:
   host: "127.0.0.1"
-  port: 8080
+  port: 8089
   env: "debug"
 zap:
   format: "console"
@@ -14,9 +14,9 @@ zap:
 redis:
   host: "127.0.0.1"
   port: 6379
-  password: "xxx"
+  password: "xxxxx"
   pool_size: 100
-  db: 0
+  db: 6
 mysql:
   host: "127.0.0.1"
   port: 3306
@@ -31,3 +31,7 @@ jwt:
   secret: "douyin"
   expires: 168
   issuer: "root"
+upload:
+  video_local_path: "upload/videos"
+  cover_local_path: "upload/covers"
+  url_path: "http://172.16.32.22:8089/"
