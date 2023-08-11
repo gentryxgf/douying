@@ -27,6 +27,6 @@ func InitRouter() *gin.Engine {
 	routerGroupApp.UserRegisterRouter()
 	routerGroupApp.MessageRouter()
 	routerGroupApp.FavoriteListRouter()
-	routerGroupApp.FavoriteActionRouter()
+	routerGroupApp.FavoriteActionRouter() //
 	return router
 }

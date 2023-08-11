@@ -7,7 +7,7 @@ type DaoGroup struct {
 	UserDao            UserDao
 	MessageDao         MessageDao
 	FavoriteListDao    FavoriteListDao
-	FavoriteActiontDao FavoriteActionDao
+	FavoriteActiontDao FavoriteActionDao //
 }
 
 var DaoGroupApp = new(DaoGroup)

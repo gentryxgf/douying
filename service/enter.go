@@ -6,7 +6,7 @@ type ServiceGroup struct {
 	UserVideoListService  UserVideoListService
 	MessageService        MessageService
 	FavoriteListService   FavoriteListService
-	FavoriteActionService FavoriteActionService
+	FavoriteActionService FavoriteActionService //
 }
 
 var ServiceGroupApp = new(ServiceGroup)

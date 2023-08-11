@@ -8,5 +8,5 @@ var (
 	UserVedioListSer  = service.ServiceGroupApp.UserVideoListService
 	MessageSer        = service.ServiceGroupApp.MessageService
 	FavoriteListSer   = service.ServiceGroupApp.FavoriteListService
-	FavoriteActionSer = service.ServiceGroupApp.FavoriteActionService
+	FavoriteActionSer = service.ServiceGroupApp.FavoriteActionService //
 )

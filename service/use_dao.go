@@ -8,5 +8,5 @@ var (
 	VideoDao         = dao.DaoGroupApp.VideoDao
 	UserDao          = dao.DaoGroupApp.UserDao
 	MessageDao       = dao.DaoGroupApp.MessageDao
-	FarvoriteListDao = dao.DaoGroupApp.FavoriteListDao
+	FarvoriteListDao = dao.DaoGroupApp.FavoriteListDao //
 )
