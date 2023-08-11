@@ -23,6 +23,7 @@ func InitRouter() *gin.Engine {
 	routerGroupApp := RouterGroup{routerGroup}
 
 	routerGroupApp.VideoRouter()
+	routerGroupApp.MessageRouter()
 
 	return router
 }

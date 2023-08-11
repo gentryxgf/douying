@@ -1,6 +1,6 @@
 package global
 
 const (
-	SUCCESS = 0
-	ERROR   = -1
+	SUCCESS int32 = 0
+	ERROR   int32 = -1
 )
