@@ -2,12 +2,14 @@ package controller
 
 import (
 	"douyin/common/global"
+	"douyin/common/utils"
 	"douyin/models/request"
 	"douyin/models/response"
-	"github.com/gin-gonic/gin"
-	"go.uber.org/zap"
 	"net/http"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
 type VideoController struct{}
@@ -35,7 +37,7 @@ func (VideoController) UploadVideoView(c *gin.Context) {
 	}
 
 	// 获取用户ID
-	/*claim, err := utils.GetUserID(c)
+	claim, err := utils.GetUserID(c)
 	if err != nil {
 		global.Log.Error("VideoController.UploadVideoView 获取UserClaim出错", zap.Error(err))
 		c.JSON(http.StatusOK, response.UploadVideoResponse{Response: response.Response{
@@ -43,10 +45,10 @@ func (VideoController) UploadVideoView(c *gin.Context) {
 			StatusMsg:  "系统错误",
 		}})
 		return
-	}*/
+	}
 
 	// 视频上传业务处理
-	err = VideoSer.UploadVideo(video, cr.Title, 10, c)
+	err = VideoSer.UploadVideo(video, cr.Title, claim.UserID, c)
 	if err != nil {
 		global.Log.Error("VideoController.UploadVideoView USE VideoSer.UploadVideo ERROR", zap.Error(err))
 		c.JSON(http.StatusOK, response.UploadVideoResponse{Response: response.Response{

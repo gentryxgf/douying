@@ -4,7 +4,6 @@ import (
 	"douyin/common/global"
 	"douyin/common/jwt"
 	"douyin/models/request"
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -22,13 +21,12 @@ func (UserRegiterContoller) UserVedioListView(c *gin.Context) {
 	}
 
 	userid, _ := strconv.Atoi(ur.UserId)
-	fmt.Println("userid", userid)
-	claim, exist := c.Get("claim")
-	x, _ := claim.(*jwt.UserClaim)
+	_claim, exist := c.Get("claim")
+	claim, _ := _claim.(*jwt.UserClaim)
 	if !exist {
 		global.Log.Error("UserVedioListView  claim 参数错误")
 	}
-	res, err := UserVedioListSer.UserVideoList(int64(userid), x)
+	res, err := UserVedioListSer.UserVideoList(int64(userid), claim)
 	if err != nil {
 		global.Log.Info("获取视频列表失败", zap.Error(err))
 	}

@@ -22,10 +22,12 @@ type LoginRegisterFlow struct {
 	token    string
 }
 
+// 注册服务
 func (UserRegisterService) UserRegister(username, password string) (*response.UserRegisterResponse, error) {
 	return NewLoginRegisterFlow(username, password).Do("register")
 }
 
+// 登录服务
 func (UserRegisterService) UserLogin(username, password string) (*response.UserRegisterResponse, error) {
 	return NewLoginRegisterFlow(username, password).Do("login")
 }
@@ -71,6 +73,7 @@ func (q *LoginRegisterFlow) Do(method string) (*response.UserRegisterResponse, e
 	return q.data, nil
 }
 
+// 对参数进行再次校验
 func (q *LoginRegisterFlow) checkParams() error {
 	if q.username == "" || q.password == "" {
 		return errors.New("用户名或密码不能为空")
@@ -84,12 +87,13 @@ func (q *LoginRegisterFlow) checkParams() error {
 	return nil
 }
 
+// 登录处理逻辑
 func (q *LoginRegisterFlow) loginFlow() error {
 	user, err := UserRegisterDao.FindUserByNameAndPass(q.username, q.password)
 	if err != nil {
 		return errors.New("用户名或密码错误")
 	}
-
+	// 颁发token
 	token, err := jwt.GenToken(jwt.PayLoad{Username: (*user).Username, UserID: (*user).ID})
 	if err != nil {
 		return errors.New("Token生成失败")
@@ -100,16 +104,17 @@ func (q *LoginRegisterFlow) loginFlow() error {
 	return nil
 }
 
+// 注册处理逻辑
 func (q *LoginRegisterFlow) registerFlow() error {
 	if exist := UserRegisterDao.IsUserExistByUsername(q.username); exist {
 		return errors.New("该用户名已存在")
 	}
-
+	// 对用户名和密码进行数据库查询验证
 	user, err := UserRegisterDao.AddNewUser(q.username, q.password)
 	if err != nil {
 		return errors.New("添加用户失败")
 	}
-
+	// 颁发token
 	token, err := jwt.GenToken(jwt.PayLoad{Username: (*user).Username, UserID: (*user).ID})
 	if err != nil {
 		return errors.New("Token生成失败")
@@ -120,6 +125,7 @@ func (q *LoginRegisterFlow) registerFlow() error {
 	return nil
 }
 
+// 对返回的数据进行打包
 func (q *LoginRegisterFlow) packData(msg string) error {
 	q.data = &response.UserRegisterResponse{
 		Response: response.Response{
