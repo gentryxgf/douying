@@ -1,0 +1,5 @@
+upload/
+douyin-warn.log
+douyin-info.log
+settings.yaml
+main.go

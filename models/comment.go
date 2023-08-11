@@ -6,3 +6,7 @@ type CommentModel struct {
 	VideoID int64  `json:"video_id" gorm:"column:video_id;not null"`
 	Content string `json:"content" gorm:"column:content"`
 }
+
+func (CommentModel) TableName() string {
+	return "comment"
+}
