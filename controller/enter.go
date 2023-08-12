@@ -2,7 +2,7 @@ package controller
 
 type ControllerGroup struct {
 	VideoController         VideoController
-	UserRegiterContoller    UserRegiterContoller
+	UserRegisterContoller   UserRegisterContoller
 	UserVedioListController UserVedioListController
 	MessageController       MessageController
 }

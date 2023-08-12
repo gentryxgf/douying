@@ -13,7 +13,7 @@ import (
 
 type UserVedioListController struct{}
 
-func (UserRegiterContoller) UserVedioListView(c *gin.Context) {
+func (UserRegisterContoller) UserVedioListView(c *gin.Context) {
 	//获取userid
 	var ur request.VideoListRequest
 	if err := c.ShouldBindQuery(&ur); err != nil {

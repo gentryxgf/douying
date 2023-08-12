@@ -9,9 +9,9 @@ import (
 	"go.uber.org/zap"
 )
 
-type UserRegiterContoller struct{}
+type UserRegisterContoller struct{}
 
-func (UserRegiterContoller) UserRegisterView(c *gin.Context) {
+func (UserRegisterContoller) UserRegisterView(c *gin.Context) {
 	//获取username和password
 	var ur request.UserRegisterRequest
 	if err := c.ShouldBindQuery(&ur); err != nil {
@@ -26,7 +26,7 @@ func (UserRegiterContoller) UserRegisterView(c *gin.Context) {
 	c.JSON(http.StatusOK, res)
 }
 
-func (UserRegiterContoller) UserLoginView(c *gin.Context) {
+func (UserRegisterContoller) UserLoginView(c *gin.Context) {
 	//获取username和password
 	var ur request.UserRegisterRequest
 	if err := c.ShouldBindQuery(&ur); err != nil {
