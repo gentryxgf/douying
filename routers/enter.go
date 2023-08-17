@@ -23,5 +23,9 @@ func InitRouter() *gin.Engine {
 	routerGroupApp.VideoRouter()
 	routerGroupApp.CommentRouter()
 
+	routerGroupApp.UserRegisterRouter()
+	routerGroupApp.MessageRouter()
+	routerGroupApp.FavoriteListRouter()
+	routerGroupApp.FavoriteActionRouter() //
 	return router
 }

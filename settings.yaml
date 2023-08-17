@@ -1,7 +1,7 @@
 system:
   host: "127.0.0.1"
   port: 8089
-  env: "release"
+  env: "debug"
 zap:
   format: "console"
   mode: "dev"

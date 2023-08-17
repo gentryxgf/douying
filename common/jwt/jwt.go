@@ -3,9 +3,10 @@ package jwt
 import (
 	"douyin/common/global"
 	"errors"
+	"time"
+
 	"github.com/dgrijalva/jwt-go/v4"
 	"go.uber.org/zap"
-	"time"
 )
 
 var MySecret []byte

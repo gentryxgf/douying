@@ -1,7 +1,12 @@
 package service
 
 type ServiceGroup struct {
-	VideoService   VideoService
+	VideoService          VideoService
+	UserRegisterService   UserRegisterService
+	UserVideoListService  UserVideoListService
+	MessageService        MessageService
+	FavoriteListService   FavoriteListService
+	FavoriteActionService FavoriteActionService //
 	CommentService CommentService
 }
 

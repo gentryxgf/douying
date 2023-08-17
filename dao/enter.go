@@ -1,8 +1,13 @@
 package dao
 
 type DaoGroup struct {
-	VideoDao VideoDao
-	UserDao  UserDao
+	UserRegisterDao    UserRegisterDao
+	UserVideoListDao   UserVideoListDao
+	VideoDao           VideoDao
+	UserDao            UserDao
+	MessageDao         MessageDao
+	FavoriteListDao    FavoriteListDao
+	FavoriteActiontDao FavoriteActionDao //
 }
 
 var DaoGroupApp = new(DaoGroup)

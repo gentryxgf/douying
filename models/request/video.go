@@ -6,5 +6,5 @@ type UploadVideoRequest struct {
 }
 
 type VideoFeedRequest struct {
-	LatestTime string `json:"latest_time" form:"latest_time"`
+	LatestTime int64 `json:"latest_time" form:"latest_time"`
 }
