@@ -2,8 +2,10 @@ package controller
 
 import (
 	"douyin/common/global"
+	"douyin/common/jwt"
 	"douyin/models/request"
 	"douyin/models/response"
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -24,11 +26,29 @@ func (CommentController) CommentAction(c *gin.Context) {
 	}
 
 	// 暂时省去判断视频ID是否存在
+	claim, err := jwt.ParseToken(req.Token)
+	if err != nil {
+		global.Log.Error("token 错误", zap.Error(err))
+		c.JSON(http.StatusOK, response.Response{
+			StatusCode: http.StatusOK, ////////改了
+			StatusMsg:  "token 错误",
+		})
+		c.Abort()
+		return
+	}
+	c.Set("claim", claim)
+	ClaimResult, ok := c.Get("claim") //通过token解析得到id
+	if !ok {
+		fmt.Println("跨中间件取值失败")
+	}
+
+	ClaimResultTpye := ClaimResult.(*jwt.UserClaim)
+	UserID := ClaimResultTpye.PayLoad.UserID
 
 	switch req.ActionType {
 	case 1:
 		if req.CommentText != "" {
-			comment, err := CommentSer.AddComment(req.VideoID, req.CommentText)
+			comment, err := CommentSer.AddComment(UserID, req.VideoID, req.CommentText)
 			if err != nil {
 				c.JSON(http.StatusOK, response.CommentActionResponse{
 					Response: response.Response{
@@ -42,7 +62,7 @@ func (CommentController) CommentAction(c *gin.Context) {
 
 	case 2:
 		// 省去判断评论ID是否存在
-		err := CommentSer.DeleteComment(req.VideoID, req.CommentID)
+		err := CommentSer.DeleteComment(req.CommentID)
 		if err != nil {
 			c.JSON(http.StatusOK, response.CommentActionResponse{
 				Response: response.Response{

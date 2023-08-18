@@ -8,6 +8,7 @@ type DaoGroup struct {
 	MessageDao         MessageDao
 	FavoriteListDao    FavoriteListDao
 	FavoriteActiontDao FavoriteActionDao //
+	CommentDao CommentDao
 }
 
 var DaoGroupApp = new(DaoGroup)
