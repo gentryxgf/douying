@@ -1,9 +1,10 @@
 package response
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"reflect"
+
+	"github.com/gin-gonic/gin"
 )
 
 var message map[int32]string
@@ -34,6 +35,11 @@ const (
 	MESSAGE_CHAT_ERROR
 )
 
+// 关注服务错误码
+const (
+	FOLLOW_LIST_ERROR int32 = 400001 + iota
+)
+
 func init() {
 	message = make(map[int32]string)
 
@@ -52,6 +58,9 @@ func init() {
 	// 消息服务错误码
 	message[MESSAGE_SEND_ERROR] = "发送消息失败"
 	message[MESSAGE_CHAT_ERROR] = "获取消息记录失败"
+
+	// 关注服务错误码
+	message[FOLLOW_LIST_ERROR] = "获取关注列表失败"
 }
 
 func FAIL(data interface{}, code int32, c *gin.Context) {
