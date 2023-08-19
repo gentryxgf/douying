@@ -22,7 +22,7 @@ mysql:
   port: 3306
   config: "charset=utf8mb4&parseTime=True&loc=Local"
   user: "root"
-  password: "123456"
+  password: "1q2w3eydh"
   db_name: "douyin"
   log_level: "error"
   max_idle_conns: 10

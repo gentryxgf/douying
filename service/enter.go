@@ -5,6 +5,8 @@ type ServiceGroup struct {
 	UserRegisterService  UserRegisterService
 	UserVideoListService UserVideoListService
 	MessageService       MessageService
+	FollowService        FollowService
+	FollowListService    FollowListService
 }
 
 var ServiceGroupApp = new(ServiceGroup)

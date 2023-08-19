@@ -8,4 +8,6 @@ var (
 	VideoDao         = dao.DaoGroupApp.VideoDao
 	UserDao          = dao.DaoGroupApp.UserDao
 	MessageDao       = dao.DaoGroupApp.MessageDao
+	FollowDao        = dao.DaoGroupApp.FollowDao
+	FollowListDao    = dao.DaoGroupApp.FollowListDao
 )
