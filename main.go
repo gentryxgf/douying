@@ -9,6 +9,7 @@ import (
 )
 
 func main() {
+
 	// 初始化配置文件
 	core.InitConf()
 	// 初始化日志库

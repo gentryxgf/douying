@@ -11,4 +11,6 @@ var (
 	FollowDao        = dao.DaoGroupApp.FollowDao
 	FollowListDao    = dao.DaoGroupApp.FollowListDao
 	FollowerListDao  = dao.DaoGroupApp.FollowerListDao
+	FarvoriteListDao = dao.DaoGroupApp.FavoriteListDao //
+	CommentDao       = dao.DaoGroupApp.CommentDao
 )

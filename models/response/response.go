@@ -63,7 +63,6 @@ func init() {
 	// 消息服务错误码
 	message[MESSAGE_SEND_ERROR] = "发送消息失败"
 	message[MESSAGE_CHAT_ERROR] = "获取消息记录失败"
-
 	// 关注服务错误码
 	message[FOLLOW_LIST_ERROR] = "获取关注列表失败"
 

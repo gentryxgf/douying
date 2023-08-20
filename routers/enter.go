@@ -2,7 +2,6 @@ package routers
 
 import (
 	"douyin/common/global"
-	"douyin/controller"
 	"douyin/middleware"
 
 	"github.com/gin-gonic/gin"
@@ -18,14 +17,18 @@ func InitRouter() *gin.Engine {
 	router := gin.Default()
 	router.Use(middleware.GinLogger(), middleware.GinRecovery(true))
 
-	router.POST("/videos", controller.ControllerGroupApp.VideoController.UploadVideoView)
-
 	routerGroup := router.Group("douyin")
 	routerGroupApp := RouterGroup{routerGroup}
 
 	routerGroupApp.VideoRouter()
+	routerGroupApp.CommentRouter()
+
 	routerGroupApp.UserRegisterRouter()
 	routerGroupApp.MessageRouter()
+	routerGroupApp.FavoriteListRouter()
+	routerGroupApp.FavoriteActionRouter() //
+
 	routerGroupApp.FollowRouter()
+
 	return router
 }
