@@ -5,6 +5,9 @@ type ControllerGroup struct {
 	UserRegisterContoller   UserRegisterContoller
 	UserVedioListController UserVedioListController
 	MessageController       MessageController
+	FollowContoller         FollowContoller
+	FollowListContoller     FollowListController
+	FollowerListContoller   FollowerListController
 }
 
 var ControllerGroupApp = new(ControllerGroup)
